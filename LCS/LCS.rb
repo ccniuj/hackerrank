@@ -12,9 +12,9 @@ str2 = strs[1]
 
 n = str1.size
 m = str2.size
+counts = Array.new(m+1){|a|0}
 str2_map = Hash.new{|h, k|h[k]=[]}
 str2.split('').each_with_index{|s, i|str2_map[s] << i}
-counts = Array.new(m+1){|a|0}
 
 n.times do |t|
   index_of_same_char = str2_map[str1[t]]
