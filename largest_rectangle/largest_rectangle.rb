@@ -12,27 +12,27 @@ max_area = 0
 area = 0
 
 max_left_width = Proc.new do |arr|
-  index_stack = []
+  lbd_index_stack = []
   width = Array.new(heights.size){0}
   arr.size.times do |i|
-    if index_stack.empty? || arr[i] >= arr[index_stack.last]
-      index_stack << i
+    if lbd_index_stack.empty? || arr[i] >= arr[lbd_index_stack.last]
+      lbd_index_stack << i
     else
       stop = false
-      while index_stack.any? && !stop
-        if arr[i] <= arr[index_stack.last]
-          index_stack.pop
+      while lbd_index_stack.any? && !stop
+        if arr[i] <= arr[lbd_index_stack.last]
+          lbd_index_stack.pop
         else
           stop = true
         end
       end
 
-      if index_stack.empty?
+      if lbd_index_stack.empty?
         width[i] = i
       else
-        width[i] = i-index_stack.last-1
+        width[i] = i-lbd_index_stack.last-1
       end
-      index_stack << i
+      lbd_index_stack << i
     end
   end
   width
